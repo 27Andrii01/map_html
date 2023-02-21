@@ -76,15 +76,15 @@ def get_map(user_latitude, user_longtitude, path, year):
     """
     Function, that create a map and save it to the map.html. 
     """
-    map = folium.Map(tiles="Stamen Terrain",
-                location=[user_latitude, user_longtitude],
-                zoom_start=3)
+    map = folium.Map(tiles="Stamen Terrain")
+    home = folium.Marker(location=[user_latitude, user_longtitude],\
+            icon=folium.Icon(color='blue'))
+    map.add_child(home)
     for i in length_way(user_latitude, user_longtitude, path, year):
         loc = folium.Marker(location=[i[0], i[1]],\
             icon=folium.Icon(color='red'))
         map.add_child(loc)
     map.save("map.html")
-
-
+print(get_map(50.450001, 30.523333, "/Users/lesya/Desktop/UCU IT Projects/Theme 1 (ip, tcp, http, html...)/task2/locations.list", 2000))
 if __name__ == '__main__':
     get_map(arg.lat, arg.lon, arg.path, arg.year)

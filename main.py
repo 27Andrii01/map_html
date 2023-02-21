@@ -7,10 +7,10 @@ from geopy.geocoders import Nominatim
 import folium
 
 parser = argparse.ArgumentParser(description='HTML-map')
-parser.add_argument('year')
-parser.add_argument('lat')
-parser.add_argument('lon')
-parser.add_argument('path')
+parser.add_argument('lat', type=float)
+parser.add_argument('lon', type=float)
+parser.add_argument('path', type=str)
+parser.add_argument('year', type=int) 
 arg = parser.parse_args()
 
 def haversine(lat1, lon1, lat2, lon2):
@@ -85,6 +85,7 @@ def get_map(user_latitude, user_longtitude, path, year):
             icon=folium.Icon(color='red'))
         map.add_child(loc)
     map.save("map.html")
-print(get_map(50.450001, 30.523333, "/Users/lesya/Desktop/UCU IT Projects/Theme 1 (ip, tcp, http, html...)/task2/locations.list", 2000))
+
+
 if __name__ == '__main__':
     get_map(arg.lat, arg.lon, arg.path, arg.year)
